@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{left=3cm, right=3cm, top=3cm, bottom=3cm}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+    
+        
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=3.5cm]{LOGOUNAP.jpg} 
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=3.5cm]{LOGOFINESI.jpg} 
+        \end{minipage}
+        
+        \vspace{1cm}
+        
+    
+        {\Large \textsc{UNIVERSIDAD NACIONAL DEL ALTIPLANO - PUNO}}\\[0.5cm]
+        {\large \textsc{ESCUELA PROFESIONAL DE INGENIERÍA ESTADÍSTICA E INFORMÁTICA}}\\[0.4cm]
+        {\large \textsc{MÉTODOS DE OPTIMIZACIÓN}}\\[1.5cm]
+        
+        
+        \rule{\linewidth}{0.5mm} \\[0.4cm]
+        {\huge \bfseries Definiciones (Variable, Función y Restricción)}\\[0.4cm]
+        \rule{\linewidth}{0.5mm} \\[1.5cm]
+        
+    
+        \begin{flushleft}
+            \textbf{NOMBRE:} Beatriz Umiña Machaca \\
+            \textbf{CÓDIGO:} 230035 \\
+            \textbf{DOCENTE:} Fred Torres Cruz \\
+            \textbf{CICLO:} V \\
+            \textbf{GRUPO:} A \\
+        \end{flushleft}
+        
+        \vfill
+        \vfill
+\textsc{Puno, 13 de abril de 2025}
+
+    
+    
+        
+    \end{center}
+\end{titlepage}
+
+\section*{Introducción}
+Cuando se realiza un trabajo de investigación o se analiza un problema real, es importante definir claramente conceptos clave como las \textbf{variables}, las \textbf{funciones} y las \textbf{restricciones}. Estos elementos ayudan a organizar la información y permiten representar de manera precisa lo que se desea analizar o mejorar.
+
+En este caso, tomaremos como ejemplo la variable \textbf{nivel de satisfacción del cliente} en un servicio de entrega a domicilio (delivery), para explicar cada concepto.
+
+\section*{1. Variable}
+Una \textbf{variable} es una característica que puede tener diferentes valores. Estas pueden ser cualitativas (categorías) o cuantitativas (números).
+
+\subsection*{Variable seleccionada: Nivel de satisfacción del cliente}
+Esta variable mide la percepción del cliente sobre el servicio recibido. En un sistema de delivery, se puede representar con una escala del 1 al 5 (de muy insatisfecho a muy satisfecho).
+
+\subsection*{Organización y operacionalización de la variable}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Espaciado entre filas
+\begin{tabular}{|p{4.5cm}|p{6.5cm}|p{4cm}|}
+\hline
+\textbf{Variable} & \textbf{Definición operativa} & \textbf{Valores asignados} \\
+\hline
+Nivel de satisfacción del cliente & 
+Percepción medida del cliente respecto al servicio recibido en el sistema de delivery, evaluada mediante una escala ordinal del 1 al 5. & 
+\begin{itemize}
+    \item 1: Muy insatisfecho
+    \item 2: Insatisfecho
+    \item 3: Regular
+    \item 4: Satisfecho
+    \item 5: Muy satisfecho
+\end{itemize} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection*{Ejemplo práctico}
+Una empresa de delivery aplica una encuesta al finalizar cada pedido, donde el cliente califica el servicio del 1 al 5. Con estos datos, la empresa puede identificar puntos débiles y mejorar su atención al cliente.
+
+\section*{2. Función}
+Una \textbf{función} establece cómo una variable depende de otras. En este caso, la satisfacción del cliente puede depender del tiempo de entrega, la calidad del producto y el costo del servicio.
+
+\begin{center}
+\textbf{Satisfacción del cliente} = f(Tiempo de entrega, Calidad del producto, Costo del servicio)
+\end{center}
+
+\section*{3. Restricciones}
+Las \textbf{restricciones} son condiciones que deben cumplirse en un modelo. Ayudan a establecer los límites dentro de los cuales las variables pueden operar.
+
+\subsection*{ restricciones en nuestro caso practico}
+\begin{itemize}
+    \item El tiempo de entrega no debe superar los 30 minutos: \textbf{T $\leq$ 30}
+    \item El costo del envío no debe ser mayor a 10 soles: \textbf{C $\leq$ 10}
+\end{itemize}
+
+Estas restricciones permiten garantizar un servicio eficiente y accesible para los clientes.
+
+\section*{Conclusión}
+Comprender las variables, funciones y restricciones es esencial para analizar situaciones reales. En este caso, analizar la satisfacción del cliente ayuda a mejorar servicios de delivery mediante decisiones basadas en datos.
+
+\section*{Bibliografía}
+\begin{itemize}
+    \item Hernández Sampieri, R. (2014). \textit{Metodología de la investigación}. McGraw-Hill.
+    \item Taha, H. A. (2004). \textit{Investigación de operaciones}. Pearson Educación.
+    \item Kotler, P., \& Keller, K. L. (2012). \textit{Dirección de marketing}. Pearson Educación.
+    \item Pita Fernández, S., & Pértega Díaz, S. (1997). Relación entre variables cuantitativas. Cad Aten Primaria, 4, 141-4.
+\end{itemize}
+
+
+\end{document}
+
