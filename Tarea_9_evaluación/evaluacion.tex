@@ -1,0 +1,331 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\geometry{margin=2.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{29 de mayo de 2025}
+\lhead{Optimization Methods}
+\cfoot{\thepage}
+
+\begin{document}
+
+\begin{center}
+
+\textbf{Universidad Nacional del Altiplano}\\
+\textbf{Facultad de Ingeniería Estadística e Informática}\\
+\textbf{Docente: Fred Torres Cruz}\\[1cm]
+\end{center}
+
+\noindent\textbf{Apellidos y Nombres:Umiña Machaca Beatriz}\\ 
+\noindent\textbf{Código:230035} 
+
+\section{EVALUACIÓN TEÓRICA}
+
+\subsection*{1. ¿Cuál de las siguientes afirmaciones describe mejor una función lineal?}
+\textbf{Respuesta: c) Es una función cuya gráfica es una línea recta}
+.
+
+\subsection*{2. En programación lineal, ¿cuál es el principal objetivo de las restricciones?}
+\textbf{Respuesta: b) Establecer las condiciones bajo las cuales se deben encontrar soluciones}
+
+
+\subsection*{3. ¿Qué concepto define el conjunto de todas las soluciones posibles que satisfacen las restricciones de un problema de optimización?}
+\textbf{Respuesta: a) Región factible}
+
+\subsection*{4. ¿Cuál de los siguientes es un objetivo típico en los problemas de optimización?}
+\textbf{Respuesta: b) Encontrar el valor mínimo o máximo de una función objetivo sujeta a restricciones}
+
+
+
+\subsection*{5. ¿Qué condición debe cumplirse para que un sistema de ecuaciones lineales tenga una única solución?}
+\textbf{Respuesta: c) El determinante de la matriz asociada debe ser distinto de cero}
+
+
+\subsection*{6. Una empresa produce sillas (x) y mesas (y). Cada silla genera una utilidad de 40 y cada mesa 60. Si la función objetivo es Maximizar Z = 40x + 60y, ¿qué representa el valor 60?}
+\textbf{Respuesta: b) La utilidad unitaria por cada mesa vendida}
+
+
+\subsection*{7. ¿Qué tipo de función es típicamente la función objetivo en programación lineal?}
+\textbf{Respuesta: c) Una función lineal}
+
+\subsection*{8. ¿Qué diferencia hay entre restricciones de igualdad y restricciones de desigualdad en programación lineal?}
+\textbf{Respuesta: b) Las restricciones de desigualdad limitan el conjunto factible, mientras que las de igualdad lo definen completamente}
+
+
+
+\subsection*{9. ¿Cuál de los siguientes no es un tipo de restricción en programación lineal?}
+\textbf{Respuesta: d) Restricciones no lineales}
+
+
+\subsection*{10. En la teoría de la optimización, el tiempo de ejecución de un algoritmo depende principalmente de:}
+\textbf{Respuesta: e) La complejidad del algoritmo utilizado}
+
+\newpage
+
+\section{EVALUACIÓN PRÁCTICA}
+
+\subsection*{Pregunta 1: Análisis de Datos de Redes Sociales}
+
+Una empresa realiza análisis de datos de redes sociales para predecir tendencias en el mercado local. El departamento de análisis utiliza dos tipos de servidores: Servidor A y Servidor B. El Servidor A puede procesar 500 GB de datos en 10 horas, mientras que el Servidor B procesa 300 GB en 8 horas. Ambos servidores tienen un límite máximo de funcionamiento diario de 12 horas, y el almacenamiento total disponible en la empresa es de 4000 GB por día. Además, el costo de energía por hora en el Servidor A es de 50 soles y en el Servidor B es de 30 soles. El objetivo es maximizar la cantidad de datos procesados al día sin superar el presupuesto de 1200 soles diarios en energía.
+
+\subsubsection*{Solución:}
+
+\textbf{. Definimos las variables:}
+\begin{align}
+x &= \text{horas de operación del Servidor A}\\
+y &= \text{horas de operación del Servidor B}
+\end{align}
+
+\textbf{ Cálculo de tasas de procesamiento:}
+\begin{align}
+\text{Servidor A:} \quad &\frac{500 \text{ GB}}{10 \text{ horas}} = 50 \text{ GB/hora}\\
+\text{Servidor B:} \quad &\frac{300 \text{ GB}}{8 \text{ horas}} = 37.5 \text{ GB/hora}
+\end{align}
+
+\textbf{ Formulación del modelo de programación lineal:}
+
+\textbf{Función objetivo:}
+\[
+\text{Maximizar } Z = 50x + 37.5y \text{ (GB procesados por día)}
+\]
+
+\textbf{Restricciones:}
+\begin{align}
+x &\leq 12 \quad \text{(límite diario Servidor A,horas maximas)}\\
+y &\leq 12 \quad \text{(límite diario Servidor B horas maximas)}\\
+50x + 30y &\leq 1200 \quad \text{(presupuesto energía)}\\
+500x + 300y &\leq 4000 \quad \text{(capacidad almacenamiento)}\\
+x &\geq 0, \quad y \geq 0 \quad \text{(restricciones de no negatividad, no puede haber horas negativas)}
+\end{align}
+
+\textbf{ Análisis detallado de restricciones:}
+
+Simplificando las restricciones para facilitar el análisis:
+\begin{align}
+\text{Restricción 3:} \quad &\frac{50x + 30y}{10} \leq \frac{1200}{10} \Rightarrow 5x + 3y \leq 120\\
+\text{Restricción 4:} \quad &\frac{500x + 300y}{100} \leq \frac{4000}{100} \Rightarrow 5x + 3y \leq 40
+\end{align}
+
+\textbf{Identificación de la restricción activa:}
+
+Comparando las restricciones 3 y 4, observamos que ambas tienen la misma forma $5x + 3y \leq k$, pero con diferentes valores de $k$:
+\begin{itemize}
+\item Restricción 3: $5x + 3y \leq 120$
+\item Restricción 4: $5x + 3y \leq 40$
+\end{itemize}
+
+La restricción más limitante es la 4, ya que $40 < 120$. Esto significa que el almacenamiento es el factor limitante, no el presupuesto energético.
+
+\textbf{ Determinación de puntos críticos:}
+
+Para encontrar la solución óptima, evaluamos los vértices de la región factible:
+
+De la restricción activa $5x + 3y = 40$:
+\begin{itemize}
+\item Cuando $y = 0$: $5x = 40 \Rightarrow x = 8$
+\item Cuando $x = 0$: $3y = 40 \Rightarrow y = 13.33$
+\end{itemize}
+
+Verificando factibilidad:
+\begin{itemize}
+\item $(0, 0)$: $Z = 50(0) + 37.5(0) = 0$ GB
+\item $(8, 0)$: $Z = 50(8) + 37.5(0) = 400$ GB ✓ Factible
+\item $(0, 13.33)$: No factible ($y > 12$)
+\item $(0, 12)$: $5(0) + 3(12) = 36 \leq 40$ ✓, $Z = 37.5(12) = 450$ GB
+\end{itemize}
+
+Sin embargo, debemos verificar si $(0, 12)$ satisface todas las restricciones:
+- Límite Servidor B: $12 \leq 12$ ✓
+- Almacenamiento: $500(0) + 300(12) = 3600 \leq 4000$ ✓
+- Presupuesto: $50(0) + 30(12) = 360 \leq 1200$ ✓
+
+\textbf{ Solución óptima:}
+Comparando los valores de la función objetivo:
+\begin{itemize}
+\item En $(8, 0)$: $Z = 400$ GB
+\item En $(0, 12)$: $Z = 450$ GB
+\end{itemize}
+
+\textbf{Solución óptima:} $x^* = 0$, $y^* = 12$
+
+\textbf{Valor óptimo:} $Z^* = 450$ GB procesados por día
+
+\textbf{Interpretación económica:}
+
+La solución indica que la empresa debe utilizar únicamente el Servidor B durante 12 horas diarias para maximizar el procesamiento de datos. Esto se debe a que:
+
+\begin{itemize}
+\item El Servidor B tiene una mejor relación costo-beneficio en términos de datos procesados por sol gastado
+\item El almacenamiento es la restricción limitante, no el presupuesto energético
+\item Usar solo el Servidor B permite procesar más datos dentro de las limitaciones de almacenamiento
+\end{itemize}
+
+\textbf{Conclusión:}
+
+La estrategia óptima para la empresa es concentrar toda la operación en el Servidor B, operándolo a su máxima capacidad diaria (12 horas). Esta decisión permite:
+\begin{itemize}
+\item Procesar 450 GB de datos diarios (máximo posible)
+\item Utilizar solo 360 soles del presupuesto de 1200 soles (30\% del presupuesto)
+\item Usar 3600 GB de los 4000 GB de almacenamiento disponible (90\% de la capacidad)
+\item Mantener una operación eficiente y económica
+\end{itemize}
+
+Esta solución demuestra que no siempre es necesario utilizar todos los recursos disponibles; la optimización puede indicar que concentrarse en el recurso más eficiente genera mejores resultados.
+
+\subsection*{Pregunta 2: Sistema de Videovigilancia}
+
+Una empresa de seguridad monitorea sistemas de videovigilancia y debe analizar imágenes de alta resolución. Tiene dos centros de procesamiento: Centro A y Centro B. El Centro A puede analizar 80 imágenes por hora, y el Centro B puede analizar 100 imágenes por hora. Debido a los costos de mantenimiento, el Centro A no puede operar más de 10 horas al día y el Centro B no puede operar más de 12 horas al día. El sistema debe procesar al menos 1200 imágenes al día, y cada centro tiene un límite de almacenamiento de 600 imágenes al día. El objetivo es minimizar el número de horas de operación de ambos centros, asegurando que el número mínimo de imágenes procesadas sea alcanzado.
+
+\subsubsection*{Solución:}
+
+\textbf{1. Definición de variables:}
+\begin{align}
+x &= \text{horas de operación del Centro A}\\
+y &= \text{horas de operación del Centro B}
+\end{align}
+
+\textbf{2. Formulación del modelo de programación lineal:}
+
+\textbf{Función objetivo:}
+\[
+\text{Minimizar } Z = x + y \text{ (total de horas de operación)}
+\]
+
+\textbf{Restricciones:}
+\begin{align}
+x &\leq 10 \quad \text{(límite operativo diario Centro A)}\\
+y &\leq 12 \quad \text{(límite operativo diario Centro B)}\\
+80x + 100y &\geq 1200 \quad \text{(requerimiento mínimo de imágenes)}\\
+80x &\leq 600 \quad \text{(capacidad almacenamiento Centro A)}\\
+100y &\leq 600 \quad \text{(capacidad almacenamiento Centro B)}\\
+x &\geq 0, \quad y \geq 0 \quad \text{(restricciones de no negatividad)}
+\end{align}
+
+\textbf{3. Análisis y simplificación de restricciones:}
+
+Simplificando las restricciones de almacenamiento:
+\begin{align}
+\text{Restricción 4:} \quad &x \leq \frac{600}{80} = 7.5\\
+\text{Restricción 5:} \quad &y \leq \frac{600}{100} = 6\\
+\text{Restricción 3:} \quad &\frac{80x + 100y}{20} \geq \frac{1200}{20} \Rightarrow 4x + 5y \geq 60
+\end{align}
+
+\textbf{Restricciones efectivas:}
+\begin{itemize}
+\item $x \leq 7.5$ (más restrictiva que $x \leq 10$)
+\item $y \leq 6$ (más restrictiva que $y \leq 12$)
+\item $4x + 5y \geq 60$ (requerimiento mínimo)
+\end{itemize}
+
+\textbf{4. Identificación de la región factible:}
+
+La región factible está definida por:
+\begin{align}
+x &\leq 7.5\\
+y &\leq 6\\
+4x + 5y &\geq 60\\
+x, y &\geq 0
+\end{align}
+
+\textbf{5. Determinación de puntos críticos:}
+
+Los vértices candidatos de la región factible son:
+
+\textbf{Intersección de $4x + 5y = 60$ con $x = 7.5$:}
+\[
+4(7.5) + 5y = 60 \Rightarrow 30 + 5y = 60 \Rightarrow y = 6
+\]
+Punto: $(7.5, 6)$
+
+\textbf{Intersección de $4x + 5y = 60$ con $y = 6$:}
+\[
+4x + 5(6) = 60 \Rightarrow 4x + 30 = 60 \Rightarrow x = 7.5
+\]
+Confirmamos el punto: $(7.5, 6)$
+
+\textbf{Intersección de $4x + 5y = 60$ con $x = 0$:}
+\[
+4(0) + 5y = 60 \Rightarrow y = 12
+\]
+Punto: $(0, 12)$ - No factible porque $y > 6$
+
+\textbf{Intersección de $4x + 5y = 60$ con $y = 0$:}
+\[
+4x + 5(0) = 60 \Rightarrow x = 15
+\]
+Punto: $(15, 0)$ - No factible porque $x > 7.5$
+
+\textbf{6. Verificación de factibilidad:}
+
+Para el punto $(7.5, 6)$:
+\begin{itemize}
+\item $x = 7.5 \leq 7.5$ ✓
+\item $y = 6 \leq 6$ ✓
+\item $4(7.5) + 5(6) = 30 + 30 = 60 \geq 60$ ✓
+\item $x, y \geq 0$ ✓
+\end{itemize}
+
+\textbf{7. Evaluación de la función objetivo:}
+
+En el punto $(7.5, 6)$:
+\[
+Z = x + y = 7.5 + 6 = 13.5 \text{ horas}
+\]
+
+\textbf{8. Verificación de la solución:}
+
+Capacidad de procesamiento:
+\[
+80(7.5) + 100(6) = 600 + 600 = 1200 \text{ imágenes}
+\]
+
+Uso de almacenamiento:
+\begin{itemize}
+\item Centro A: $80(7.5) = 600$ imágenes (100\% de capacidad)
+\item Centro B: $100(6) = 600$ imágenes (100\% de capacidad)
+\end{itemize}
+
+\textbf{Solución óptima:} $x^* = 7.5$, $y^* = 6$
+
+\textbf{Valor óptimo:} $Z^* = 13.5$ horas totales de operación
+
+\textbf{9. Interpretación operativa:}
+
+La solución óptima indica que la empresa debe:
+\begin{itemize}
+\item Operar el Centro A durante 7.5 horas diarias
+\item Operar el Centro B durante 6 horas diarias
+\item Utilizar ambos centros a su máxima capacidad de almacenamiento
+\item Procesar exactamente el mínimo requerido de 1200 imágenes
+\end{itemize}
+
+Esta configuración es eficiente porque:
+\begin{itemize}
+\item Maximiza el uso de la capacidad de almacenamiento de ambos centros
+\item Cumple exactamente con el requerimiento mínimo sin sobrepasar
+\item Minimiza el tiempo total de operación y, por tanto, los costos operativos
+\end{itemize}
+
+\textbf{10. Conclusión:}
+
+La estrategia operativa óptima para el sistema de videovigilancia requiere una coordinación precisa entre ambos centros de procesamiento. La solución demuestra que:
+
+\begin{itemize}
+\item Es necesario utilizar ambos centros para cumplir eficientemente con los requerimientos
+\item Las restricciones de almacenamiento son los factores limitantes críticos en ambos centros
+\item El Centro A debe operar al 75\% de su tiempo máximo disponible (7.5/10 horas)
+\item El Centro B debe operar al 50\% de su tiempo máximo disponible (6/12 horas)
+\item La operación resulta en un uso óptimo de recursos con 13.5 horas totales de operación diaria
+\end{itemize}
+
+Esta solución proporciona el equilibrio perfecto entre eficiencia operativa y cumplimiento de requerimientos, minimizando costos mientras garantiza el procesamiento adecuado del sistema de seguridad.
+
+\end{document}
