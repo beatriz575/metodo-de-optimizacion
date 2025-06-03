@@ -1,0 +1,151 @@
+\documentclass{beamer}
+\usetheme{Madrid} % Puedes cambiar el tema si deseas
+
+\title{Método de Lagrange para Optimización}
+\author{Paricela Yana Jimena\\ Butron Maquera Tania Karin \\ Umiña Machaca Beatriz}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+% Diapositiva 1 - ¿Qué es?
+\begin{frame}{¿Qué es el Método de Lagrange?}
+\begin{itemize}
+    \item Técnica matemática para hallar máximos o mínimos de una función.
+    \item Se aplica cuando hay restricciones de igualdad: \textit{optimización con restricciones}.
+    \item Busca puntos donde la función objetivo es extrema bajo una condición.
+\end{itemize}
+\end{frame}
+
+% Diapositiva 2 - Definición formal
+\begin{frame}{Definición Formal}
+\textbf{Problema:}
+\begin{block}{}
+Maximizar o minimizar $f(x, y, \dots)$ \\
+sujeto a $g(x, y, \dots) = 0$
+\end{block}
+
+\textbf{Función Lagrangiana:}
+\[
+\mathcal{L}(x, y, \lambda) = f(x, y) + \lambda (g(x, y))
+\]
+\textbf{Condición de optimalidad:}
+\[
+\nabla f = \lambda \nabla g
+\]
+\end{frame}
+
+% Diapositiva 3 - Pasos
+\begin{frame}{Pasos del Método de Lagrange}
+\begin{enumerate}
+    \item Identificar $f(x, y)$ y $g(x, y) = 0$
+    \item Construir $\mathcal{L}(x, y, \lambda) = f(x, y) + \lambda g(x, y)$
+    \item Calcular derivadas parciales: 
+    \[
+    \frac{\partial \mathcal{L}}{\partial x} = 0,\quad \frac{\partial \mathcal{L}}{\partial y} = 0,\quad \frac{\partial \mathcal{L}}{\partial \lambda} = 0
+    \]
+    \item Resolver el sistema para hallar \( x, y, \lambda \)
+    \item Evaluar \( f(x, y) \) en los puntos encontrados
+\end{enumerate}
+\end{frame}
+
+
+% Diapositiva 5 - Aplicaciones
+\begin{frame}{Aplicaciones del Método de Lagrange}
+\begin{itemize}
+    \item \textbf{Economía:} maximizar utilidades con presupuestos.
+    \item \textbf{Ingeniería:} minimizar costos bajo restricciones técnicas.
+    \item \textbf{Física:} se usa en el principio de mínima acción.
+    \item \textbf{Machine Learning:} regularización y optimización de funciones.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Ejemplo práctico - Enunciado}
+\textbf{Problema:} Maximizar la función objetivo:
+\[
+f(x, y) = xy
+\]
+\textbf{Sujeto a la restricción:}
+\[
+x + y = 10
+\]
+
+Queremos encontrar los valores de $x$ y $y$ que \textbf{maximicen el producto} $xy$ sin dejar de cumplir la condición de que $x + y = 10$.
+\end{frame}
+\begin{frame}{Paso 1: Lagrangiana}
+Usamos el método de Lagrange para incorporar la restricción a la función objetivo:
+
+\textbf{Lagrangiana:}
+\[
+\mathcal{L}(x, y, \lambda) = xy + \lambda (10 - x - y)
+\]
+
+\textbf{¿Qué significa esto?}
+
+- $xy$ es la función que queremos maximizar.
+- $\lambda$ es el multiplicador de Lagrange.
+- $(10 - x - y)$ es la forma reordenada de la restricción.
+
+Así, convertimos un problema con restricción en uno sin restricción.
+\end{frame}
+\begin{frame}{Paso 2: Derivadas parciales}
+Derivamos la Lagrangiana con respecto a cada variable:
+
+\[
+\frac{\partial \mathcal{L}}{\partial x} = y - \lambda = 0
+\]
+\[
+\frac{\partial \mathcal{L}}{\partial y} = x - \lambda = 0
+\]
+\[
+\frac{\partial \mathcal{L}}{\partial \lambda} = 10 - x - y = 0
+\]
+
+\textbf{¿Qué obtenemos?}
+
+Un sistema de tres ecuaciones con tres incógnitas: $x$, $y$ y $\lambda$.
+\end{frame}
+\begin{frame}{Paso 3: Resolviendo el sistema}
+Tenemos el sistema:
+
+\[
+y - \lambda = 0 \Rightarrow y = \lambda
+\]
+\[
+x - \lambda = 0 \Rightarrow x = \lambda
+\]
+\[
+10 - x - y = 0 \Rightarrow x + y = 10
+\]
+
+\textbf{Sustituyendo:}
+
+Como $x = \lambda$ y $y = \lambda$, entonces:
+
+\[
+x + y = 2\lambda = 10 \Rightarrow \lambda = 5
+\Rightarrow x = 5, y = 5
+\]
+\end{frame}
+\begin{frame}{Resultado final}
+Hemos encontrado el punto óptimo:
+
+\[
+x = 5, \quad y = 5
+\]
+
+\textbf{Valor máximo:}
+\[
+f(5, 5) = 5 \times 5 = 25
+\]
+
+\textbf{Interpretación:}  
+El producto $xy$ es máximo cuando $x$ y $y$ valen ambos 5, cumpliendo la restricción $x + y = 10$.
+\end{frame}
+
+
+
+\end{document}
