@@ -1,0 +1,272 @@
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\geometry{margin=2.5cm}
+
+\title{Optimización - Universidad Nacional del Altiplano - FINESI\\
+Evaluación: Unidad II}
+\author{Apellidos y Nombres:Beatriz Umiña Machaca}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Pregunta 1}
+\textbf{¿Cuáles son las principales diferencias entre la optimización de funciones convexas y no convexas, y cómo influyen en la elección de métodos?}\\
+
+
+\subsection*{Respuesta:}
+Las principales  diferencias son:
+
+\textbf{Funciones Convexas:}
+\begin{itemize}
+    \item Cualquier mínimo local es también mínimo global
+    \item Garantizan convergencia a la solución óptima
+    \item Métodos eficientes: descenso de gradiente, Newton, quasi-Newton
+    \item Condiciones de optimalidad: $\nabla f(x^*) = 0$ es condición necesaria y suficiente
+\end{itemize}
+
+\textbf{Funciones No Convexas:}
+\begin{itemize}
+    \item Múltiples mínimos locales
+    \item No garantizan convergencia al mínimo global
+    \item Requieren métodos más sofisticados: algoritmos genéticos, simulated annealing, métodos de enjambre
+    \item Condiciones de optimalidad: $\nabla f(x^*) = 0$ solo es condición necesaria
+\end{itemize}
+
+\textbf{Influencia en la elección de métodos:}
+Para funciones convexas se prefieren métodos determinísticos y eficientes, mientras que para no convexas se requieren métodos estocásticos o metaheurísticos que exploren mejor el espacio de búsqueda.
+
+\section*{Pregunta 2}
+\textbf{¿Cuándo resulta más efectivo usar variantes del descenso de gradiente y cuáles son los factores clave en su selección?}
+
+\subsection*{Respuesta:}
+
+\textbf{Variantes y sus casos de uso:}
+\begin{itemize}
+    \item \textbf{Gradient Descent (GD):} Datasets pequeños, funciones suaves
+    \item \textbf{Stochastic Gradient Descent (SGD):} Datasets grandes, cuando se requiere velocidad
+    \item \textbf{Mini-batch GD:} Balance entre precisión y eficiencia computacional
+    \item \textbf{Adam:} Redes neuronales, problemas con gradientes dispersos
+    \item \textbf{RMSprop:} Redes neuronales recurrentes
+    \item \textbf{Adagrad:} Problemas con características dispersas
+\end{itemize}
+
+\textbf{Factores clave en la selección:}
+\begin{enumerate}
+    \item Tamaño del dataset
+    \item Naturaleza del problema (convexo/no convexo)
+    \item Recursos computacionales disponibles
+    \item Velocidad de convergencia requerida
+    \item Estabilidad del gradiente
+    \item Características del espacio de parámetros
+\end{enumerate}
+
+\section*{Pregunta 3}
+\textbf{¿Cómo se aplican los criterios de optimalidad en un método de optimización?}
+
+\subsection*{Respuesta:}
+
+\textbf{Criterios de Optimalidad:}
+
+\textbf{Condiciones de primer orden (necesarias):}
+$$\nabla f(x^*) = 0$$
+
+\textbf{Condiciones de segundo orden (suficientes):}
+$$\nabla^2 f(x^*) \succ 0 \text{ (definida positiva)}$$
+
+\textbf{Aplicación en métodos de optimización:}
+\begin{enumerate}
+    \item \textbf{Criterio de parada:} $\|\nabla f(x_k)\| < \epsilon$
+    \item \textbf{Dirección de búsqueda:} $d_k = -\nabla f(x_k)$
+    \item \textbf{Verificación de convergencia:} Evaluar si se cumple $\nabla f(x_k) \approx 0$
+    \item \textbf{Test de optimalidad:} Verificar que la matriz Hessiana sea definida positiva
+\end{enumerate}
+
+\textbf{Con restricciones (Condiciones KKT):}
+\begin{align}
+\nabla f(x^*) + \sum_{i=1}^m \lambda_i \nabla g_i(x^*) &= 0\\
+g_i(x^*) &\leq 0, \quad i = 1,\ldots,m\\
+\lambda_i &\geq 0, \quad i = 1,\ldots,m\\
+\lambda_i g_i(x^*) &= 0, \quad i = 1,\ldots,m
+\end{align}
+
+\section*{Pregunta 4}
+\textbf{¿De qué manera facilitan las herramientas de optimización automática (p.ej., Optuna) la búsqueda de configuraciones óptimas en aprendizaje automático?}
+
+\subsection*{Respuesta:}
+
+\textbf{Facilidades que proporciona Optuna:}
+
+\begin{itemize}
+    \item \textbf{Algoritmos de optimización avanzados:} TPE (Tree-structured Parzen Estimator), CMA-ES, búsqueda aleatoria
+    \item \textbf{Pruning automático:} Detiene trials no prometedores tempranamente
+    \item \textbf{Paralelización:} Ejecución distribuida de múltiples trials
+    \item \textbf{Persistencia:} Almacenamiento de estudios y reanudación
+    \item \textbf{Visualización:} Gráficos de convergencia y análisis de parámetros
+\end{itemize}
+
+\textbf{Ventajas en ML:}
+\begin{enumerate}
+    \item Automatización completa del proceso de búsqueda
+    \item Manejo eficiente de espacios de hiperparámetros complejos
+    \item Reducción significativa del tiempo de búsqueda
+    \item Integración sencilla con frameworks de ML
+    \item Soporte para optimización multiobjetivo
+\end{enumerate}
+
+\section*{Pregunta 5}
+\textbf{¿Cómo influye la selección de estrategias de regularización en el desempeño y la generalización de un modelo?}
+
+\subsection*{Respuesta:}
+
+\textbf{Tipos de regularización y sus efectos:}
+
+\textbf{L1 (Lasso):}
+$$J(w) = \frac{1}{2m}\sum_{i=1}^m (h_w(x^{(i)}) - y^{(i)})^2 + \lambda\sum_{j=1}^n |w_j|$$
+\begin{itemize}
+    \item Produce sparsity (selección de características)
+    \item Útil cuando hay muchas características irrelevantes
+\end{itemize}
+
+\textbf{L2 (Ridge):}
+$$J(w) = \frac{1}{2m}\sum_{i=1}^m (h_w(x^{(i)}) - y^{(i)})^2 + \lambda\sum_{j=1}^n w_j^2$$
+\begin{itemize}
+    \item Reduce la magnitud de los pesos
+    \item Mejor para multicolinealidad
+\end{itemize}
+
+\textbf{Elastic Net:}
+$$J(w) = \frac{1}{2m}\sum_{i=1}^m (h_w(x^{(i)}) - y^{(i)})^2 + \lambda_1\sum_{j=1}^n |w_j| + \lambda_2\sum_{j=1}^n w_j^2$$
+
+\textbf{Dropout:}
+\begin{itemize}
+    \item Desactiva aleatoriamente neuronas durante el entrenamiento
+    \item Previene co-adaptación de características
+\end{itemize}
+
+\textbf{Impacto en el desempeño:}
+\begin{itemize}
+    \item Reduce overfitting
+    \item Mejora la generalización
+    \item Puede reducir la capacidad del modelo si se aplica excesivamente
+    \item Requiere ajuste cuidadoso del parámetro de regularización $\lambda$
+\end{itemize}
+
+\section*{Pregunta 6}
+\textbf{¿Cómo se pueden integrar rutinas de validación y corrección de código en Optuna para mejorar la calidad y eficacia del proceso de optimización de hiperparámetros?}
+
+\subsection*{Respuesta:}
+
+\textbf{Estrategias de integración:}
+
+\begin{enumerate}
+    \item \textbf{Validación cruzada dentro del objetivo:}
+    \begin{itemize}
+        \item Usar k-fold cross-validation en cada trial
+        \item Reportar métricas estadísticamente robustas
+    \end{itemize}
+    
+    \item \textbf{Manejo de excepciones:}
+    \begin{itemize}
+        \item Try-catch blocks para capturar errores
+        \item Retornar valores predeterminados en caso de fallo
+    \end{itemize}
+    
+    \item \textbf{Callbacks personalizados:}
+    \begin{itemize}
+        \item Validación de parámetros antes de entrenar
+        \item Logging detallado de errores
+    \end{itemize}
+    
+    \item \textbf{Pruning inteligente:}
+    \begin{itemize}
+        \item Usar MedianPruner o PercentilePruner
+        \item Configurar early stopping basado en métricas de validación
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Ejemplo de implementación:}
+\begin{lstlisting}[language=Python]
+def objective(trial):
+    try:
+        # Validación de parámetros
+        params = {
+            'learning_rate': trial.suggest_float('lr', 1e-5, 1e-1, log=True),
+            'batch_size': trial.suggest_categorical('batch_size', [16, 32, 64])
+        }
+        
+        # Validación cruzada
+        cv_scores = cross_val_score(model, X, y, cv=5)
+        
+        # Reporte de métricas intermedias
+        for i, score in enumerate(cv_scores):
+            trial.report(score, i)
+            if trial.should_prune():
+                raise optuna.TrialPruned()
+                
+        return cv_scores.mean()
+    
+    except Exception as e:
+        logging.error(f"Error in trial {trial.number}: {e}")
+        return float('inf')  # Penalizar trials con errores
+\end{lstlisting}
+
+\section*{Pregunta 7}
+\textbf{¿Cómo podemos utilizar las métricas provistas por scikit-learn para evaluar un modelo de clasificación, y qué información adicional brindan además de la exactitud?}
+
+\subsection*{Respuesta:}
+
+\textbf{Código completado:}
+\begin{lstlisting}[language=Python]
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report, confusion_matrix
+
+y_true = [0, 1, 2, 2, 2]
+y_pred = [0, 2, 2, 2, 1]
+
+print("Accuracy:", accuracy_score(y_true, y_pred))
+print("Precision:", precision_score(y_true, y_pred, average='macro'))
+print("Recall:", recall_score(y_true, y_pred, average='macro'))
+print("F1-score:", f1_score(y_true, y_pred, average='macro'))
+print("Classification Report:")
+print(classification_report(y_true, y_pred))
+print("Confusion Matrix:")
+print(confusion_matrix(y_true, y_pred))
+\end{lstlisting}
+
+\textbf{Información adicional de las métricas:}
+
+\begin{itemize}
+    \item \textbf{Precision:} $\frac{TP}{TP + FP}$ - Proporción de predicciones positivas correctas
+    \item \textbf{Recall (Sensibilidad):} $\frac{TP}{TP + FN}$ - Proporción de casos positivos correctamente identificados
+    \item \textbf{F1-score:} $2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}$ - Media armónica entre precisión y recall
+    \item \textbf{Specificity:} $\frac{TN}{TN + FP}$ - Proporción de casos negativos correctamente identificados
+\end{itemize}
+
+\textbf{Ventajas sobre accuracy:}
+\begin{enumerate}
+    \item Mejor evaluación en datasets desbalanceados
+    \item Información específica por clase
+    \item Identificación de sesgos del modelo
+    \item Comprensión del tipo de errores cometidos
+\end{enumerate}
+
+\textbf{Interpretación de resultados:}
+Con los datos dados:
+\begin{itemize}
+    \item Accuracy = 0.6 (60\% de predicciones correctas)
+    \item La precision y recall por clase revelan el desempeño específico
+    \item La matriz de confusión muestra exactamente qué clases se confunden
+\end{itemize}
+
+\end{document}
+```
